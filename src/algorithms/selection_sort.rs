@@ -11,9 +11,7 @@
 /// Reason - there are two nested object to iterate through
 ///
 ///
-///
-///
-///
+
 #[allow(unused)]
 struct SelectionSort<T> {
     arr: Vec<T>,
