@@ -24,7 +24,7 @@ impl<T: Eq + Ord + Copy> SelectionSort<T> {
     }
 
     pub fn sort_ascending(&mut self) {
-        let len = *&self.arr.len();
+        let len = self.arr.len();
         let mut sorted = vec![];
 
         // return empty vec if empty array is given to us
@@ -34,9 +34,9 @@ impl<T: Eq + Ord + Copy> SelectionSort<T> {
             for _ in 0..len {
                 if len >= 1 {
                     // find the index of the smallest element in the array
-                    let smallest_idx = get_smallest_idx(*&&self.arr);
+                    let smallest_idx = get_smallest_idx(&self.arr);
                     // insert the smallest element into our new sorted_array variable
-                    sorted.push(*&self.arr[smallest_idx]);
+                    sorted.push(self.arr[smallest_idx]);
                     // finally remove the smallest array from our original array using the it's index
                     self.arr.remove(smallest_idx);
                 }
@@ -57,11 +57,11 @@ impl<T: Eq + Ord + Copy> SelectionSort<T> {
             for _ in 0..len {
                 if len >= 1 {
                     // find the index of the largest element in the array
-                    let largest_idx = get_largest_idx(*&&self.arr);
+                    let largest_idx = get_largest_idx(&self.arr);
                     // insert the largest element into our new sorted_array variable
-                    sorted.push(*&self.arr[largest_idx]);
+                    sorted.push(self.arr[largest_idx]);
                     // finally remove the largest array from our original array using the it's index
-                    *&self.arr.remove(largest_idx);
+                    self.arr.remove(largest_idx);
                 }
             }
         }
@@ -74,9 +74,9 @@ pub fn get_smallest_idx<T: Eq + Ord + Copy>(arr: &Vec<T>) -> usize {
     let mut smallest_idx = 0;
     let mut smallest = arr[0];
 
-    for i in 0..arr.len() {
-        if arr[i] < smallest {
-            smallest = arr[i];
+    for (i, n) in arr.iter().enumerate()  {
+        if *n < smallest {
+            smallest = *n;
             smallest_idx = i;
         }
     }
@@ -89,9 +89,9 @@ pub fn get_largest_idx<T: Eq + Ord + Copy>(arr: &Vec<T>) -> usize {
     let mut largest_idx = 0;
     let mut largest = arr[0];
 
-    for i in 0..arr.len() {
-        if arr[i] > largest {
-            largest = arr[i];
+    for (i, n) in arr.iter().enumerate() {
+        if *n > largest {
+            largest = *n;
             largest_idx = i;
         }
     }

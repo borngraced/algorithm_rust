@@ -19,11 +19,7 @@ fn binary_search(mut arr: Vec<u32>, find: u32) -> bool {
 
     // let perform quick check is an array has only 1 element.
     if arr.len() <= 1 {
-        if arr[0] == find {
-            return true;
-        } else {
-            return false;
-        }
+        return arr[0] == find;
     };
 
     // if the above terms are not met then we'd proceed with our algorithm.
